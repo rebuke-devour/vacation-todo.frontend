@@ -22,7 +22,7 @@ const button = {
 
 function App() {
   // === State and Other Variables === //
-const navigate = useNavigate()
+const navigate = useNavigate();
 
 const url = "https://vacago-backennd.herokuapp.com/vacaGo/"
 
