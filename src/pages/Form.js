@@ -18,21 +18,24 @@ const handleSubmission = (event) => {
 }
 
     return <form onSubmit={handleSubmission}>
-        
+
 <input
     type="text"
+    placeholder="City"
     onChange={handleChange}
     value={formData.city}
     name="city"
     />
 <input
     type="text"
+    placeholder="Activity"
     onChange={handleChange}
     value={formData.activity}
     name="activity"
     />
 <input
     type="text"
+    placeholder="Details"
     onChange={handleChange}
     value={formData.details}
     name="details"

@@ -3,6 +3,7 @@ import './App.css';
 import AllVacas from "./pages/AllVacas"
 import SingleVaca from "./pages/SingleVaca"
 import Form from "./pages/Form"
+import Header from "./components/Header"
 
 import { useState, useEffect } from "react";
 import { Route, Routes, Link, useNavigate } from "react-router-dom";
@@ -24,7 +25,7 @@ function App() {
   // === State and Other Variables === //
 const navigate = useNavigate();
 
-const url = "https://vacago-backennd.herokuapp.com/vacaGo/"
+const url = "https://vacago-backennd.herokuapp.com/vacago/"
 
 const [posts, setPosts] =useState([])
 
@@ -65,8 +66,8 @@ const getTargetVaca = (vaca) => {
 
 // Update Vacation for the handleSubmit prop
 const updateVaca = async (vaca) => {
-  await fetch(url + vaca.id, {
-    method: "put",
+  await fetch(url + vaca.id + "/", {
+    method: "Put",
     headers: {
       "Content-Type": "application/json",
     },
@@ -76,11 +77,13 @@ const updateVaca = async (vaca) => {
 }
 
 const deleteVacas = async (vaca) => {
-  await fetch(url + vaca.id, {
-    method: "delete"
+  console.log("deleteVacas is called")
+  await fetch(url + vaca.id + "/", {
+    method: "Delete"
   })
   getVacas()
   navigate("/")
+  
 }
 
 // == useEffects == //
@@ -94,15 +97,16 @@ useEffect(()=> {
   return (
     <div className="App">
       <h1 style={h1}>Vaca-Go!</h1>
+    <Header/>
       <Link to="/new">
         <button style={button}>New Vacation</button>
       </Link>
       <Routes>
         <Route path="/" element={<AllVacas vacas={posts}/>} />
         <Route path="/post/:id" element={<SingleVaca
-      vacas={posts}
+      posts={posts}
       edit={getTargetVaca}
-      deleteVaca={deleteVacas}  
+      deleteVacas={deleteVacas}  
       />} />
       <Route
         path="/new"
@@ -113,7 +117,7 @@ useEffect(()=> {
             buttonLabel="Create Vaca"
         />} />
         <Route path="/edit" element={<Form
-        initialVaca={nullVaca}
+        initialVaca={targetVaca}
         handleSubmit={updateVaca}
         buttonLabel="Update Vaca"
         />} />
