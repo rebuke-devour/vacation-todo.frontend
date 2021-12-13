@@ -4,6 +4,7 @@ import AllVacas from "./pages/AllVacas"
 import SingleVaca from "./pages/SingleVaca"
 import Form from "./pages/Form"
 import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 import { useState, useEffect } from "react";
 import { Route, Routes, Link, useNavigate } from "react-router-dom";
@@ -96,6 +97,7 @@ useEffect(()=> {
 
   return (
     <div className="App">
+      
       <h1 style={h1}>Vaca-Go!</h1>
     <Header/>
       <Link to="/new">
@@ -121,7 +123,9 @@ useEffect(()=> {
         handleSubmit={updateVaca}
         buttonLabel="Update Vaca"
         />} />
+        
       </Routes>
+      <Footer/>
     </div>
   );
 }
